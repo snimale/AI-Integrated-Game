@@ -5,11 +5,10 @@ using System;
 public class PlayerInputs : MonoBehaviour {
     private PlayerControls playerControls;
     private InputAction walk;
-    private InputAction run;
+    private Vector2 moveDir;
 
     // Boolean Values
     private bool isWalking;
-    private bool isRunning;
     private bool isIdle;
 
     // Events 
@@ -19,45 +18,35 @@ public class PlayerInputs : MonoBehaviour {
     private void Awake() {
         playerControls = new PlayerControls();
         isWalking=false;
-        isRunning=false;
         isIdle=false;
     }
 
     private void OnEnable() {
         walk = playerControls.Player.Walk;
-        run = playerControls.Player.Run;
         playerControls.Player.Attack.started+=TriggerAttackEvent;
         playerControls.Player.Guard.started+=TriggerGuardEvent;
         walk.Enable();
-        run.Enable();
         playerControls.Player.Attack.Enable();
         playerControls.Player.Guard.Enable();
     }
 
     private void FixedUpdate() {
-        if(!walk.IsPressed() && !run.IsPressed()) {
+        moveDir = walk.ReadValue<Vector2>();
+        if(moveDir==Vector2.zero) {
             isWalking=false;
-            isRunning=false;
             isIdle=true;
-        } else if(run.IsPressed()) {
-            isRunning=true;
-            isWalking=false;
-            isIdle=false;
         } else {
             isWalking=true;
-            isRunning=false;
             isIdle=false;
         }
     }
 
     private void OnDisable() {
         walk.Disable();
-        run.Disable();
         playerControls.Player.Attack.Disable();
     }
 
-
-    public bool getIsRunning() {return isRunning;}
+    public Vector2 getMoveDir() {return moveDir;}
     public bool getIsWalking() {return isWalking;}
     public bool getIsIdle() {return isIdle;}
     private void TriggerAttackEvent(InputAction.CallbackContext context) {
