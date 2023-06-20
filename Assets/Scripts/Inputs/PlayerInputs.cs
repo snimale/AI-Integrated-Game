@@ -14,6 +14,7 @@ public class PlayerInputs : MonoBehaviour {
     // Events 
     public event EventHandler OnLeftMouseClick;
     public event EventHandler OnRightMouseClick;
+    public event EventHandler OnTestKeyClick;
 
     private void Awake() {
         playerControls = new PlayerControls();
@@ -23,11 +24,13 @@ public class PlayerInputs : MonoBehaviour {
 
     private void OnEnable() {
         walk = playerControls.Player.Walk;
-        playerControls.Player.Attack.started+=TriggerAttackEvent;
-        playerControls.Player.Guard.started+=TriggerGuardEvent;
+        playerControls.Player.Attack.performed+=TriggerAttackEvent;
+        playerControls.Player.Guard.performed+=TriggerGuardEvent;
+        playerControls.Player.testInput.performed+=TriggerTestEvent;
         walk.Enable();
         playerControls.Player.Attack.Enable();
         playerControls.Player.Guard.Enable();
+        playerControls.Player.testInput.Enable();
     }
 
     private void FixedUpdate() {
@@ -44,6 +47,8 @@ public class PlayerInputs : MonoBehaviour {
     private void OnDisable() {
         walk.Disable();
         playerControls.Player.Attack.Disable();
+        playerControls.Player.Guard.Disable();
+        playerControls.Player.testInput.Disable();
     }
 
     public Vector2 getMoveDir() {return moveDir;}
@@ -55,5 +60,9 @@ public class PlayerInputs : MonoBehaviour {
 
     private void TriggerGuardEvent(InputAction.CallbackContext context) {
         OnRightMouseClick?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void TriggerTestEvent(InputAction.CallbackContext context) {
+        OnTestKeyClick?.Invoke(this, EventArgs.Empty);
     }
 }
