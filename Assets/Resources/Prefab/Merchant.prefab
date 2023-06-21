@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012637965634}
   - component: {fileID: 212000012752857868}
+  - component: {fileID: 4753359547562386730}
   m_Layer: 0
   m_Name: Front arm
   m_TagString: Untagged
@@ -84,6 +85,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4753359547562386730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010127525936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c920f98d5717244ab2936cdd76256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 21300024, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  blue: {fileID: 21300068, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  green: {fileID: 21300110, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  orange: {fileID: 21300150, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  yellow: {fileID: 21300190, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  white: {fileID: 21300208, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  black: {fileID: 21300246, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
 --- !u!1 &1000010323055244
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +368,7 @@ GameObject:
   - component: {fileID: 4000011044399452}
   - component: {fileID: 212000010037997588}
   - component: {fileID: 2696297706454728280}
+  - component: {fileID: 2106769734307353655}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -439,6 +460,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6070bf0ccce33c945821d1d6618a0e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2106769734307353655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011651654450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c920f98d5717244ab2936cdd76256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 21300250, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  blue: {fileID: 21300252, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  green: {fileID: 21300254, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  orange: {fileID: 21300256, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  yellow: {fileID: 21300258, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  white: {fileID: 21300260, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  black: {fileID: 21300262, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
 --- !u!1 &1000013261649242
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013937349994}
   - component: {fileID: 212000011162561196}
+  - component: {fileID: 1279958810466200786}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
@@ -576,6 +617,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1279958810466200786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013350955496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c920f98d5717244ab2936cdd76256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 21300272, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  blue: {fileID: 21300274, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  green: {fileID: 21300276, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  orange: {fileID: 21300278, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  yellow: {fileID: 21300280, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  white: {fileID: 21300282, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  black: {fileID: 21300284, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
 --- !u!1 &1000013420753312
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +646,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013694043764}
   - component: {fileID: 212000011478754320}
+  - component: {fileID: 2599711740053854122}
   m_Layer: 0
   m_Name: Back arm
   m_TagString: Untagged
@@ -660,3 +721,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2599711740053854122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013420753312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c920f98d5717244ab2936cdd76256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 21300022, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  blue: {fileID: 21300066, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  green: {fileID: 21300108, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  orange: {fileID: 21300148, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  yellow: {fileID: 21300188, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  white: {fileID: 21300206, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  black: {fileID: 21300244, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
