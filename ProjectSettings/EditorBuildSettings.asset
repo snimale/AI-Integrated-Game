@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e658b14acefa27947b6d6df562ffa926
   - enabled: 1
-    path: Assets/Scenes/Map.unity
+    path: Assets/Scenes/SinglePlayerMap.unity
+    guid: 572bd84972ad59b44ba5977315e0f106
+  - enabled: 1
+    path: Assets/Scenes/MultiPlayerMap.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: dbdaa4b9ef0f51241b280b8c93c1ae63, type: 2}
