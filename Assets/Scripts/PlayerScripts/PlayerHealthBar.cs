@@ -10,10 +10,6 @@ public class PlayerHealthBar : MonoBehaviour {
     [SerializeField] private PlayerLogic playerLogic;
     [SerializeField] private float lerpDuration;
 
-    private void OnEnable() {
-        playerInputs.OnTestKeyClick+=setHealthBar_OnTestKeyClick;
-    }
-
     private void setHealthBar_OnTestKeyClick(object sender, EventArgs e) {
         int[] playerStats = playerLogic.getPlayerStats();
         bar.value=playerStats[0];
