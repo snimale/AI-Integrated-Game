@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 1363406961}
   playerInputs: {fileID: 924680826}
-  playerLogic: {fileID: 2111931571}
+  playerStats: {fileID: 2111931574}
   lerpDuration: 1
 --- !u!1 &519420028
 GameObject:
@@ -443,6 +443,8 @@ GameObject:
   - component: {fileID: 700337562}
   - component: {fileID: 700337561}
   - component: {fileID: 700337560}
+  - component: {fileID: 700337563}
+  - component: {fileID: 700337564}
   m_Layer: 5
   m_Name: JumpInput
   m_TagString: Untagged
@@ -489,7 +491,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -552,6 +554,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700337558}
   m_CullTransparentMesh: 1
+--- !u!114 &700337563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700337558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/space
+--- !u!95 &700337564
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700337558}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78723eaea67ab0a4b8de633fa0d10c1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &756399693
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0713dd6a53e6834f9fc6113ad7de44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCooldown: 1
 --- !u!1 &1009411674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1076,7 @@ Animator:
   m_GameObject: {fileID: 1270406617}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7c0bf631d952a54d8e1b3ee7634bea2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 78723eaea67ab0a4b8de633fa0d10c1c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1154,6 +1190,7 @@ GameObject:
   - component: {fileID: 1434857664}
   - component: {fileID: 1434857663}
   - component: {fileID: 1434857662}
+  - component: {fileID: 1434857666}
   m_Layer: 5
   m_Name: GuardInput
   m_TagString: Untagged
@@ -1213,7 +1250,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1276,6 +1313,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434857660}
   m_CullTransparentMesh: 1
+--- !u!95 &1434857666
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434857660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78723eaea67ab0a4b8de633fa0d10c1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1640121730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,6 +2046,7 @@ GameObject:
   - component: {fileID: 2111931572}
   - component: {fileID: 2111931573}
   - component: {fileID: 2111931571}
+  - component: {fileID: 2111931574}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2027,6 +2085,7 @@ MonoBehaviour:
   playerInputs: {fileID: 924680826}
   moveDirIgnoreVal: 0
   playerMovSpeed: 4
+  jumpValue: 250
   playerHealthBar: {fileID: 516988455}
   knight: {fileID: 7070118480849519374, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
   thief: {fileID: 1000012663239756, guid: 13c470c5b8dcd4854834911f7e0a9a6c, type: 3}
@@ -2081,3 +2140,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &2111931574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111931569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b74d5d1b61e5949ad2978fbc8861b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

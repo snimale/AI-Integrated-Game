@@ -55,6 +55,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c661ef88-6f60-4ee6-bd45-5caed5d09aa7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""testInput"",
                     ""type"": ""Button"",
                     ""id"": ""b16fdbac-be73-420f-bd5c-2f83a2746174"",
@@ -101,11 +110,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""39ead9e1-a8fc-4c44-bb3d-f0110707549c"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""testInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99d3420e-0189-43e4-b2b7-18f9bff78ab7"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -119,6 +139,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Walk = m_Player.FindAction("Walk", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Guard = m_Player.FindAction("Guard", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_testInput = m_Player.FindAction("testInput", throwIfNotFound: true);
     }
 
@@ -184,6 +205,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Walk;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Guard;
+    private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_testInput;
     public struct PlayerActions
     {
@@ -192,6 +214,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Walk => m_Wrapper.m_Player_Walk;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Guard => m_Wrapper.m_Player_Guard;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @testInput => m_Wrapper.m_Player_testInput;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -211,6 +234,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Guard.started += instance.OnGuard;
             @Guard.performed += instance.OnGuard;
             @Guard.canceled += instance.OnGuard;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
             @testInput.started += instance.OnTestInput;
             @testInput.performed += instance.OnTestInput;
             @testInput.canceled += instance.OnTestInput;
@@ -227,6 +253,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Guard.started -= instance.OnGuard;
             @Guard.performed -= instance.OnGuard;
             @Guard.canceled -= instance.OnGuard;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
             @testInput.started -= instance.OnTestInput;
             @testInput.performed -= instance.OnTestInput;
             @testInput.canceled -= instance.OnTestInput;
@@ -252,6 +281,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnWalk(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnGuard(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnTestInput(InputAction.CallbackContext context);
     }
 }
