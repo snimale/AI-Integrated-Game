@@ -20,11 +20,9 @@ public class PlayerStats : MonoBehaviour {
     };
 
     private void Awake() {
-        // get and set initial stats
-        charStatsMapping.TryGetValue(PlayerPrefs.GetString("character"), out int[] stats);
-        if(stats==null) stats = new int[] {400, 50, 15, 0, 20, 15}; // defalut
-        setStats(stats);
+        setStats(getStats());
     }
+
     private void setStats(int[] stats) {
         health=stats[0];
         mp=stats[1];
@@ -34,7 +32,14 @@ public class PlayerStats : MonoBehaviour {
         mdef=stats[5];
     }
 
+    private int[] getStats() {
+        charStatsMapping.TryGetValue(PlayerPrefs.GetString("character"), out int[] stats);
+        if(stats==null) stats = new int[] {400, 50, 15, 0, 20, 15}; // defalut
+        return stats;
+    }
+
     public int getHealth() {
+        if(health==0) setStats(getStats());
         return health;
     }
 }

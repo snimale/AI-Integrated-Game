@@ -9,7 +9,7 @@ public class PlayerHealthBar : MonoBehaviour {
     [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private float lerpDuration;
-    private void Awake() {
+    private void OnEnable() {
         setHealthBarMax(playerStats.getHealth());
         // have to subscribe to damage input
     }

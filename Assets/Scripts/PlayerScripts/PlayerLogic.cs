@@ -19,7 +19,6 @@ public class PlayerLogic : MonoBehaviour {
 
     // hashmap to choose character of player choice
     private Dictionary<String, GameObject> charVisualMapping;
-    
     private void OnEnable() {
         charVisualMapping = new Dictionary<string, GameObject>() {
             {"knight", knight},
