@@ -454,8 +454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxDistFromSpawn: 3
   allowedDistError: 0.3
-  WaitBetweenMoves: 3
-  moveSpeed: 5
+  WaitBetweenMoves: 4
+  moveSpeed: 2
 --- !u!1 &628189559
 GameObject:
   m_ObjectHideFlags: 0

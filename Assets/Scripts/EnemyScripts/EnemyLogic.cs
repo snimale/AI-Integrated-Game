@@ -19,22 +19,18 @@ public class EnemyLogic : MonoBehaviour {
         spawnPosition = new Vector2(this.transform.position.x, this.transform.position.y);
         initialPosition = new Vector2(this.transform.position.x, this.transform.position.y);
         finalPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        lastTimeMoved=Time.time;
+        lastTimeMoved=-1*WaitBetweenMoves; // to start moving on enable directly
     }
     private void Update() {
         if(this.transform.position.x<=finalPosition.x-allowedDistError || this.transform.position.x>=finalPosition.x+allowedDistError) {
-            isMoving=true;
-            Vector3 moveDir = new Vector3(1, 0, 0);
-            float moveDist = moveSpeed*Time.deltaTime;
-            if(finalPosition.x-initialPosition.x<0) moveDir*=-1;
-            this.transform.position+=moveDir*moveDist;
-            lastTimeMoved = Time.time;
+            moveToDestination();
         } else {
             isMoving=false;
+            // after reaching destination, it has to wait till next movement
             if(Time.time-lastTimeMoved>WaitBetweenMoves) {
                 float totalMoveDist = getMoveDistance();
                 finalPosition.x += totalMoveDist;
-            }
+            } // else dont move, just wait
         }
     }
 
@@ -43,21 +39,35 @@ public class EnemyLogic : MonoBehaviour {
         // max range of movement
         float xMax = MaxDistFromSpawn - (float)(initialPosition.x-spawnPosition.x);
         float xMin = -1*(MaxDistFromSpawn - (float)(spawnPosition.x-initialPosition.x));
-        
+
         // random distance integer part
         int randomDistanceInteger = rnd.Next((int)xMin, (int)xMax);
 
         // random distance float part
-        float randomDistanceDouble = (float)rnd.NextDouble();
-        float maxDoubleAllowed = Math.Min((xMax-(int)xMax), xMin-(int)xMin);
-        if(randomDistanceDouble>maxDoubleAllowed) randomDistanceDouble=maxDoubleAllowed;
-
+        float randomDistanceDecimal = (float)rnd.NextDouble();
+        float maxDecimalAllowed = Math.Min((xMax-(float)Mathf.Floor(xMax)), (xMin-(float)Mathf.Floor(xMin)));
+        randomDistanceDecimal = randomDistanceDecimal*-1 +maxDecimalAllowed;
+        //Debug.Log(xMax-Math.Floor(xMax));
+        
         // random sign for int + or - float
+        float randomSign = (float)rnd.Next(-1, 2);
+        randomDistanceDecimal*=randomSign;
 
         // random finalDistance +ve or -ve to move
-        float finalDistance = (float)randomDistanceInteger+randomDistanceDouble;
+        float finalDistance = (float)randomDistanceInteger+(float)randomDistanceDecimal;
         return finalDistance;
     }
+    private void moveToDestination() {
+        // it has not reached destination
+        isMoving=true;
+        // get move direction
+        Vector3 moveDir = new Vector3(1, 0, 0);
+        if(finalPosition.x-initialPosition.x<0) moveDir*=-1;
+        // get move distance
+        float moveDist = moveSpeed*Time.deltaTime;
+        this.transform.position+=moveDir*moveDist;
+        lastTimeMoved = Time.time;
+    }
 
-    public bool getIsMoving() { return isMoving;}
+    public bool getIsMoving() {return isMoving;}
 }
