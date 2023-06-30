@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyAnimations : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class EnemyAnimations : MonoBehaviour {
+    private Animator animator;
+    private EnemyLogic enemyLogic;
+    
+    private void OnEnable() {
+        animator = GetComponentInChildren<Animator>();
+        enemyLogic = GetComponent<EnemyLogic>();
+        if(enemyLogic==null) Destroy(this.gameObject);
+    }
+    private void Update() {
+        if(enemyLogic.getIsMoving()) {
+            animator.SetBool("moving", true);
+        } else {
+            animator.SetBool("moving", false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void jump_OnJumpEvent() {
         
+    }
+    private void attack_OnEnemyContact() {
+
     }
 }

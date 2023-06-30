@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour {
     [SerializeField] private int MaxDistFromSpawn;
+    [SerializeField] private float MaxDetectionDist;
     [SerializeField] private float allowedDistError;
-    [SerializeField] private float WaitBetweenMoves;
+    [SerializeField] private int MaxWaitBetweenMoves;
+    [SerializeField] private int MinWaitBetweenMoves;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpCooldown;
     private Rigidbody2D rb;
     private System.Random rnd;
     private Vector2 spawnPosition;
@@ -13,23 +16,33 @@ public class EnemyLogic : MonoBehaviour {
     private Vector2 finalPosition;
     private float lastTimeMoved;
     private bool isMoving;
+    private float waitBetweenMoves;
+    // private PlayerLogic player;
     private void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         rnd = new System.Random();
         spawnPosition = new Vector2(this.transform.position.x, this.transform.position.y);
         initialPosition = new Vector2(this.transform.position.x, this.transform.position.y);
         finalPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        lastTimeMoved=-1*WaitBetweenMoves; // to start moving on enable directly
+        waitBetweenMoves = getWaitBetweenMoves();
+        lastTimeMoved=-1*waitBetweenMoves; // to start moving on enable directly
     }
     private void Update() {
+
+        // if(Mathf.Abs(this.transform.position.x-player.transform.position.x)<MaxDetectionDist
+        //    && (this.transform.position.y-player.transform.position.x)<MaxDetectionHeight) {
+        //     // go in hostile mode
+        // }
+
         if(this.transform.position.x<=finalPosition.x-allowedDistError || this.transform.position.x>=finalPosition.x+allowedDistError) {
             moveToDestination();
         } else {
             isMoving=false;
             // after reaching destination, it has to wait till next movement
-            if(Time.time-lastTimeMoved>WaitBetweenMoves) {
+            if(Time.time-lastTimeMoved>waitBetweenMoves) {
                 float totalMoveDist = getMoveDistance();
                 finalPosition.x += totalMoveDist;
+                waitBetweenMoves = getWaitBetweenMoves();
             } // else dont move, just wait
         }
     }
@@ -67,6 +80,13 @@ public class EnemyLogic : MonoBehaviour {
         float moveDist = moveSpeed*Time.deltaTime;
         this.transform.position+=moveDir*moveDist;
         lastTimeMoved = Time.time;
+    }
+
+    private float getWaitBetweenMoves() {
+        float currWait;
+        currWait = rnd.Next(MinWaitBetweenMoves, MaxWaitBetweenMoves-1);
+        currWait += (float)rnd.NextDouble();
+        return currWait;
     }
 
     public bool getIsMoving() {return isMoving;}
