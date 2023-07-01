@@ -19,11 +19,14 @@ public class PlayerStats : MonoBehaviour {
         {"priest", new int[] {150, 250, 0, 35, 5, 5}}
     };
 
+    bool statsAreSet=false;
+
     private void Awake() {
         setStats(getStats());
     }
 
     private void setStats(int[] stats) {
+        statsAreSet=true;
         health=stats[0];
         mp=stats[1];
         atk=stats[2];
@@ -39,7 +42,12 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public int getHealth() {
-        if(health==0) setStats(getStats());
+        if(!statsAreSet) setStats(getStats());
         return health;
+    }
+
+    public void takeDamage(int damage) {
+        health-=damage;
+        if(health<=0) health = 0;
     }
 }

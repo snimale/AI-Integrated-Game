@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour {
@@ -8,6 +9,7 @@ public class PlayerLogic : MonoBehaviour {
     [SerializeField] private float playerMovSpeed;
     [SerializeField] private float jumpValue;
     [SerializeField] private PlayerHealthBar playerHealthBar;
+    [SerializeField] private float deathAnimationTime;
     
     // 6 characters prefab
     [SerializeField] private GameObject knight;
@@ -19,6 +21,9 @@ public class PlayerLogic : MonoBehaviour {
 
     // hashmap to choose character of player choice
     private Dictionary<String, GameObject> charVisualMapping;
+    public EventHandler OnPlayerDeath;
+    private bool died=false;
+    private float diedTime;
     private void OnEnable() {
         charVisualMapping = new Dictionary<string, GameObject>() {
             {"knight", knight},
@@ -41,6 +46,15 @@ public class PlayerLogic : MonoBehaviour {
     }
 
     private void Update() {
+        if(died && Time.time-diedTime>deathAnimationTime) {
+
+            // and do whatever menu u want here
+            // foreach(Transform child in transform) {
+            //     Destroy(child.gameObject);
+            // }
+            Destroy(this.gameObject);
+        
+        }
         playerMovement();
     }
 
@@ -60,5 +74,16 @@ public class PlayerLogic : MonoBehaviour {
     private void jump_OnSpacePressed(object sender, EventArgs e) {
         this.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody);
         rigidbody.AddForce(new Vector2(0, jumpValue));
+    }
+
+    public void gotHit(int damageTaken) {
+        if(GetComponent<PlayerStats>().getHealth()-damageTaken<=0) {
+            OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+            playerHealthBar.disableBar();
+            diedTime = Time.time;
+            died=true;
+        }
+        this.GetComponent<PlayerStats>().takeDamage(damageTaken);
+        playerHealthBar.updateHealth();
     }
 }

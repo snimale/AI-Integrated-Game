@@ -12,6 +12,7 @@ public class PlayerAnimatorControl : MonoBehaviour {
         playerInputs = GameObject.FindGameObjectWithTag("InputManager").GetComponent<PlayerInputs>();
         playerInputs.OnLeftMouseClick+=animateAttack_OnLeftMouseClick;
         playerInputs.OnRightMouseClick+=animateGuard_OnRightMouseClick;
+        GetComponentInParent<PlayerLogic>().OnPlayerDeath+=animateDeath_OnPlayerDeath;
         lookingRight=false;
     }
 
@@ -36,5 +37,10 @@ public class PlayerAnimatorControl : MonoBehaviour {
     private void animateGuard_OnRightMouseClick(object sender, EventArgs e) {
         animator.StopPlayback();
         animator.Play("guard");
+    }
+
+    private void animateDeath_OnPlayerDeath(object sender, EventArgs e) {
+        animator.StopPlayback();
+        animator.Play("die");
     }
 }

@@ -14,7 +14,7 @@ public class PlayerHealthBar : MonoBehaviour {
         // have to subscribe to damage input
     }
 
-    private void setHealthBar_OnTestKeyClick(object sender, EventArgs e) {
+    public void updateHealth() {
         int currHealth = playerStats.getHealth();
         bar.value=currHealth;
     }
@@ -22,5 +22,9 @@ public class PlayerHealthBar : MonoBehaviour {
     private void setHealthBarMax(int maxHealth) {
         bar.maxValue = maxHealth;
         bar.value = maxHealth;
+    }
+
+    public void disableBar() {
+        bar.gameObject.SetActive(false);
     }
 }
